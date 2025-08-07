@@ -58,6 +58,40 @@ class LinkedList {
     }
     console.log(listValues);
   }
+
+  // remove duplicates without set
+  removeDuplicatesWithoutSet() {
+    let curr = this.head;
+    while (curr) {
+      let runner = curr;
+      while (runner.next) {
+        if (runner.next.value === curr.value) {
+          runner.next = runner.next.next;
+          this.size--;
+        } else {
+          runner = runner.next;
+        }
+      }
+      curr = curr.next;
+    }
+  }
+
+  // remove duplicates using set
+  removeDuplicate() {
+    let set = new Set();
+    let curr = this.head;
+    let prev = null;
+    while (curr) {
+      if (set.has(curr.value)) {
+        prev.next = curr.next;
+        this.size--;
+      } else {
+        set.add(curr.value);
+        prev = curr;
+      }
+      curr = curr.next;
+    }
+  }
 }
 
 const ll = new LinkedList();
@@ -65,6 +99,11 @@ const ll = new LinkedList();
 ll.append(1);
 ll.append(2);
 ll.append(3);
+ll.append(3);
+ll.append(1);
 ll.prepend(22);
 ll.prepend(23);
+ll.printList();
+// ll.removeDuplicate();
+ll.removeDuplicatesWithoutSet()
 ll.printList();
