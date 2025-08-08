@@ -92,6 +92,25 @@ class LinkedList {
       curr = curr.next;
     }
   }
+
+  removeKthNode(n) {
+    if (n < 1 || n > this.size) {
+      console.log("invalid node");
+      return;
+    }
+    if (n === 1) {
+      this.head = this.head.next;
+      this.size--;
+      return;
+    }
+    let curr = this.head;
+
+    for (let i = 1; i < n; i++) {
+      curr = curr.next;
+    }
+    curr.next = curr.next.next;
+    this.size--;
+  }
 }
 
 const ll = new LinkedList();
@@ -104,6 +123,5 @@ ll.append(1);
 ll.prepend(22);
 ll.prepend(23);
 ll.printList();
-// ll.removeDuplicate();
-ll.removeDuplicatesWithoutSet()
+ll.removeKthNode(3);
 ll.printList();
