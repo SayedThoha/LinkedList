@@ -111,6 +111,28 @@ class LinkedList {
     curr.next = curr.next.next;
     this.size--;
   }
+
+  removeNthNodeFromBack(n) {
+    let curr = this.head;
+
+    if (n < 1 || n > this.size) {
+      console.log("invalid node");
+      return;
+    }
+    let posToDelete = this.getSize() - n;
+
+    if (posToDelete === 1) {
+      this.head = this.head.next;
+      this.size--;
+      return;
+    }
+    for (let i = 0; i < posToDelete; i++) {
+      curr = curr.next;
+    }
+
+    curr.next = curr.next.next;
+    this.size--;
+  }
 }
 
 const ll = new LinkedList();
@@ -123,5 +145,6 @@ ll.append(1);
 ll.prepend(22);
 ll.prepend(23);
 ll.printList();
-ll.removeKthNode(3);
+// ll.removeKthNode(3);
+ll.removeNthNodeFromBack(2);
 ll.printList();
