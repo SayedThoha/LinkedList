@@ -133,6 +133,19 @@ class LinkedList {
     curr.next = curr.next.next;
     this.size--;
   }
+
+  reverseLinkList() {
+    let curr = this.head;
+    let prev = null;
+    let next = null;
+    while (curr) {
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    this.head = prev;
+  }
 }
 
 const ll = new LinkedList();
@@ -146,5 +159,6 @@ ll.prepend(22);
 ll.prepend(23);
 ll.printList();
 // ll.removeKthNode(3);
-ll.removeNthNodeFromBack(2);
+// ll.removeNthNodeFromBack(2);
+ll.reverseLinkList()
 ll.printList();
